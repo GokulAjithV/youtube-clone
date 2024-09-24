@@ -1,11 +1,15 @@
-import { Bell, Menu, Mic, Search, Upload, User } from "lucide-react";
+import { ArrowLeft, Bell, Menu, Mic, Search, Upload, User } from "lucide-react";
 import logo from '../assets/react.svg';
 import Button from '../components/Button'
+import { useState } from "react";
 
 const PageHeader = () => {
+
+    const [showFullWidthSearch, setShowFullWidthSearch] = useState(false);
+
     return (
         <div className="flex justify-between gap-10 lg:gap-20 pt-2 mb-6 mx-4">
-            <div className="flex gap-4 items-center shrink-0">
+            <div className={`flex gap-4 items-center shrink-0 ${ showFullWidthSearch ? "hidden" : "flex" }`}>
                 <Button variant="icon" size="icon">
                     <Menu />
                 </Button>
@@ -13,7 +17,10 @@ const PageHeader = () => {
                     <img src={logo} alt="YouTube"/>
                 </a>
             </div>
-            <form className="flex gap-4 flex-grow justify-center">
+            <form className={`gap-4 justify-center flex-grow ${ showFullWidthSearch ? "flex" : "hidden md:flex" }`}>
+                <Button type="button" variant="icon" size="icon" className="shrink-0" onClick={ () => setShowFullWidthSearch(false)}>
+                    <ArrowLeft />
+                </Button>
                 <div className="flex flex-grow max-w-[600px]">
                     <input 
                         type="search"
@@ -27,7 +34,13 @@ const PageHeader = () => {
                     <Mic />
                 </Button>
             </form>
-            <div className="flex shrink-0 md:gap-2">
+            <div className= {`shrink-0 md:gap-2 ${ showFullWidthSearch ? "hidden" : "flex" }`}>
+                <Button variant="icon" size="icon" className="md:hidden" onClick={() => setShowFullWidthSearch(true)}>
+                    <Search />
+                </Button>
+                <Button variant="icon" size="icon" className="md:hidden">
+                    <Mic />
+                </Button>
                 <Button variant="icon" size="icon">
                     <Upload />
                 </Button>
@@ -43,4 +56,4 @@ const PageHeader = () => {
 }
 
 
-export default PageHeader
+export default PageHeader;
