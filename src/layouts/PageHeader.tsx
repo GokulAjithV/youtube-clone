@@ -18,9 +18,15 @@ const PageHeader = () => {
                 </a>
             </div>
             <form className={`gap-4 justify-center flex-grow ${ showFullWidthSearch ? "flex" : "hidden md:flex" }`}>
-                <Button type="button" variant="icon" size="icon" className="shrink-0" onClick={ () => setShowFullWidthSearch(false)}>
+                {showFullWidthSearch && 
+                <Button 
+                    type="button" 
+                    variant="icon" 
+                    size="icon" 
+                    className="shrink-0" 
+                    onClick={ () => setShowFullWidthSearch(false)}>
                     <ArrowLeft />
-                </Button>
+                </Button>}
                 <div className="flex flex-grow max-w-[600px]">
                     <input 
                         type="search"
@@ -49,7 +55,7 @@ const PageHeader = () => {
                 </Button>
                 <Button variant="icon" size="icon">
                     <User />
-                </Button>
+                </Button>    
             </div>
         </div>
     )
